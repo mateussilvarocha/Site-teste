@@ -122,4 +122,4 @@ document.addEventListener('DOMContentLoaded', function() {
         // Exemplo de objeto cartItems
         
     }
-}
+})
