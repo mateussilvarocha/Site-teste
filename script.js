@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cartItems.push(product);
             updateCartDisplay();
         });
-    });
+    });as
 
     // Function to update the cart display
     function updateCartDisplay() {
