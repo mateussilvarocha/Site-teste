@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+#container{
+    width: 100%;
+}
+header {
+    background-image: url('banner-acai.png');
+    background-color: #333;
+    color: #000000;
+    padding: 15px 0 50px;
+    width: 1349px; /* Largura fixa */
+    height: 300px; /* Altura fixa */
+    width: 100%;
+}
+
+li{ 
+    color: white;
+}
+header h1 {
+    font-size: 24px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.menu-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.menu-btn span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #c2c2c2;
+    margin-bottom: 5px;
+}
+
+.menu {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s ease;
+}
+
+.menu.active {
+    left: 0;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 50px 0 0 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #666;
+}
+
+.menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+section {
+    margin-left: 280px;
+    padding: 20px;
+}
+
+
+/* Adicionei este estilo para o botão de fechar */
+.close-btn, #close-sidebar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close-btn:focus, #close-sidebar:focus {
+    outline: none;
+}
+
+.close-btn:hover, #close-sidebar:hover {
+    color: #ccc;
+}
+.add-to-cart {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #218838;
+}
+
+#cart-img{
+    padding: -px;
+}
+.cart-button {
+    background-image: url('carrinho.png'); /* Define a imagem de fundo */
+    background-size: cover; /* Garante que a imagem cubra todo o botão */
+    background-position: center; /* Centraliza a imagem */
+    width: 50px; /* Largura do botão */
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px; /* Adicione margem para espaçamento */
+    background-color: #fff; /* Cor de fundo opcional */
+    padding: 5px; /* Adicione padding para espaço interno */
+    border-radius: 50%; /* Arredondar bordas para criar uma aparência de botão */
+    cursor: pointer;
+}
+
+.cart-button img {
+    width: 40px; /* Tamanho da imagem do carrinho */
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px; /* Ajuste fino da posição vertical */
+    right: -5px; /* Ajuste fino da posição horizontal */
+    background-color: red; /* Cor de fundo do contador */
+    color: white; /* Cor do texto do contador */
+    padding: 3px 6px; /* Espaçamento interno do contador */
+    font-size: 12px; /* Tamanho da fonte do contador */
+    border-radius: 50%; /* Arredondar bordas para criar uma aparência de círculo */
+}
+
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: #333;
+    z-index: 999;
+    transition: right 0.3s ease;
+}
+.cart-sidebar.active {
+    transform: translateX(0);
+    right: 0;
+}
+.cart-content {
+    padding: 20px;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 50px 0 0 0;
+}
+
+.cart-sidebar ul li {
+    padding: 10px;
+    border-bottom: 1px solid #666;
+}
+
+.cart-sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+.cart-sidebar .cart-content h2,
+.cart-sidebar .cart-content p {
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .cart-sidebar {
+        width: 200px;
+    }
+    .menu {
+        width: 200px;
+    }
+
+}
