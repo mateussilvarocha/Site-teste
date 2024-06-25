@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 //----Git só expõe o arquivo modificado, por isso não modifica o tempo de exportação nos arquivos não modificados------
 
+=======
+>>>>>>> 63ff26d61279d5632a4391606c6ee58c0c987347
 
 document.addEventListener('DOMContentLoaded', function() {
     var menuBtn = document.querySelector('.menu-btn');
@@ -124,4 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Exemplo de objeto cartItems
         
     }
+<<<<<<< HEAD
 });
+=======
+})
+>>>>>>> 63ff26d61279d5632a4391606c6ee58c0c987347
