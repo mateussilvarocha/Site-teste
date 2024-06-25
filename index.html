@@ -1,64 +1,82 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<!--https://mateussilvarocha.github.io/-->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Flexível com Carrinho e Menu</title>
+    <title>Site Flexível</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#produtos">Produtos</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-            <ul class="button">
-                <li class="cart-icon"><a href="#" id="open-cart">Carrinho</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="cart-button">
+            <span class="cart-count">0</span>
+            </div>
+            
+        </div>
     </header>
 
-    <main>
-        <section id="home">
-            <h1>Bem-vindo ao Nosso Site</h1>
-        </section>
-        <section id="produtos">
-            <h1>Nossos Produtos</h1>
-            <div class="product" data-id="1" data-name="Produto 1" data-price="10.00">
-                <h2>Produto 1</h2>
-                <p>Preço: R$10,00</p>
-                <button class="add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product" data-id="2" data-name="Produto 2" data-price="20.00">
-                <h2>Produto 2</h2>
-                <p>Preço: R$20,00</p>
-                <button class="add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product" data-id="3" data-name="Produto 3" data-price="30.00">
-                <h2>Produto 3</h2>
-                <p>Preço: R$30,00</p>
-                <button class="add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-        </section>
-        
-    </main>
 
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h1>Seu Carrinho</h1>
-            <button id="close-cart">&times;</button>
+    <main>
+        <div id= "container">
+            <section id="home">
+                <div class="content">
+                    <h1>Conteúdo do Site</h1>
+                    <p>Bem-vindo ao nosso site flexível!</p>
+                </div>
+            </section>
+            <section id="produtos">
+                <h1>Nossos Produtos</h1>
+                <div class="product" data-id="1" data-name="Produto 1" data-price="10.00">
+                    <h2>Produto 1</h2>
+                    <p>Preço: R$10,00</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-id="2" data-name="Produto 2" data-price="20.00">
+                    <h2>Produto 2</h2>
+                    <p>Preço: R$20,00</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-id="3" data-name="Produto 3" data-price="30.00">
+                    <h2>Produto 3</h2>
+                    <p>Preço: R$30,00</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </section>
         </div>
-        <ul class="cart-items"></ul>
-        <p class="empty-cart-message">O carrinho está vazio.</p>
-    </div>
+    </main>
     <footer>
         <div id="sobre">Sobre Nós</div>
         <div id="contato">Fale Conosco</div>
         
     </footer>
+
+    <div class="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <nav class="menu">
+        <button class="close-btn">X</button>
+        <ul>
+            <li><a href="#">Página 1</a></li>
+            <li><a href="#">Página 2</a></li>
+            <li><a href="#">Página 3</a></li>
+            <li><a href="#">Página 4</a></li>
+        </ul>
+    </nav>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <button id="close-sidebar">X</button>
+        <div class="cart-content">
+            <h2>Carrinho de Compras</h2>
+        <ul class="cart-items"></ul>
+        <p class="empty-cart-message">O carrinho está vazio.</p>
+        <button id ="pagar-agora">pagar agora</button>
+        <button id="pagar-depois">pagar no caixa</button>
+    </div>
+
+    
     <script src="script.js"></script>
 </body>
 </html>

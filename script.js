@@ -1,44 +1,66 @@
+//----Git só expõe o arquivo modificado, por isso não modifica o tempo de exportação nos arquivos não modificados------
+
+
 document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.menu a');
-    const sections = document.querySelectorAll('main section');
+    var menuBtn = document.querySelector('.menu-btn');
+    var menu = document.querySelector('.menu');
+    var closeBtn = document.querySelector('.close-btn');
+    var openSidebarBtn = document.querySelector('.cart-button');
+    const closeSidebarBtn = document.getElementById('close-sidebar');
     const cartSidebar = document.getElementById('cart-sidebar');
-    const openCartBtn = document.getElementById('open-cart');
-    const closeCartBtn = document.getElementById('close-cart');
     const cartItemsList = document.querySelector('.cart-items');
     const emptyCartMessage = document.querySelector('.empty-cart-message');
-    let cartItems = [];
+    const cartItems = {};
 
-    // Event listener for opening the cart sidebar
-    openCartBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        cartSidebar.classList.add('open');
-        updateCartDisplay();
-
+    // Função para abrir a aba lateral
+    openSidebarBtn.addEventListener('click', function() {
+        cartSidebar.classList.add('active');
     });
 
-    // Event listener for closing the cart sidebar
-    closeCartBtn.addEventListener('click', function() {
-        cartSidebar.classList.remove('open');
+    // Função para fechar a aba lateral
+    closeSidebarBtn.addEventListener('click', function() {
+        cartSidebar.classList.remove('active');
+    });
+    closeBtn.addEventListener('click', function() {
+        menu.classList.remove('active');
+    });
+    // Abrir ou fechar o menu ao clicar no botão
+    menuBtn.addEventListener('click', function() {
+        menu.classList.toggle('active');
     });
 
-    // Event listeners for menu links
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetID = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetID);
-
-            sections.forEach(section => {
-                if (section.id === targetID) {
-                    section.classList.remove('hidden');
-                } else {
-                    section.classList.add('hidden');
-                }
-            });
+    // Fechar o menu ao clicar em um item do menu
+    var menuItems = document.querySelectorAll('.menu ul li a');
+    menuItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+            menu.classList.remove('active');
         });
     });
 
-    // Event listeners for add-to-cart buttons
+    // Fechar o menu ao clicar em qualquer lugar fora do menu
+    document.addEventListener('click', function(event) {
+        if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+        //if(cartSidebar.classList.contains('active') && !cartSidebar.contains(event.target) && !openSidebarBtn.contains(event.target)) {
+            //cartSidebar.classList.remove('active');
+        //}
+    });
+    document.getElementById('pagar-depois').addEventListener('click', function() {
+        const phoneNumber = '5521993901422'; // Número do WhatsApp do Vendedor
+        let message = 'Olá, gostaria de realizar a seguinte compra:\n';
+
+                for (const id in cartItems) {
+                    const item = cartItems[id];
+                    message += `- ${item.name} R$ ${item.price.toFixed(2)} x ${item.quantity} Total: R$${item.quantity * item.price.toFixed(2)}.00 \n`;
+                }
+
+        const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+        window.open(url, '_blank');
+    });
+    
+
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -47,31 +69,59 @@ document.addEventListener('DOMContentLoaded', function() {
             const productName = productElement.getAttribute('data-name');
             const productPrice = productElement.getAttribute('data-price');
 
-            const product = {
-                id: productId,
-                name: productName,
-                price: productPrice
-            };
+            if (cartItems[productId]) {
+                cartItems[productId].quantity += 1;
+            } else {
+                cartItems[productId] = {
+                    name: productName,
+                    price: parseFloat(productPrice),
+                    quantity: 1
+                };
+            }
 
-            cartItems.push(product);
-            updateCartDisplay();
+        updateCartDisplay();
         });
-    });as
+    });
 
-    // Function to update the cart display
     function updateCartDisplay() {
         cartItemsList.innerHTML = '';
-
         if (cartItems.length === 0) {
             emptyCartMessage.style.display = 'block';
         } else {
-            emptyCartMessage.style.display = 'none';
-
-            cartItems.forEach(item => {
+            emptyCartMessage.style.display = 'none'
+    
+            for (const id in cartItems) {
+                const item = cartItems[id];
                 const listItem = document.createElement('li');
-                listItem.textContent = `${item.name} - R$${item.price}`;
+
+                // Criando os botões de mais e menos
+                const minusButton = document.createElement('button');
+                minusButton.textContent = '-';
+                minusButton.onclick = () => updateQuantity(id, item.quantity - 1);
+
+                const plusButton = document.createElement('button');
+                plusButton.textContent = '+';
+                plusButton.onclick = () => updateQuantity(id, item.quantity + 1);
+
+                listItem.textContent = `${item.name} - R$ ${item.price.toFixed(2)} x ${item.quantity} `;
+                listItem.appendChild(minusButton);
+                listItem.appendChild(plusButton);
+
                 cartItemsList.appendChild(listItem);
-            });
+            }
         }
+
+        // Função para atualizar a quantidade de um item no carrinho
+        function updateQuantity(id, newQuantity) {
+            if (newQuantity <= 0) {
+                delete cartItems[id]; // Remove o item se a quantidade for zero ou menor
+            } else {
+                cartItems[id].quantity = newQuantity; // Atualiza a quantidade do item
+            }
+            updateCartDisplay(); // Atualiza a lista de itens no carrinho
+        }
+
+        // Exemplo de objeto cartItems
+        
     }
 });
